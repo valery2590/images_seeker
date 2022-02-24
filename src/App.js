@@ -1,23 +1,48 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import axios from 'axios'
 
 function App() {
+
+  const [list, setList] = useState(["hola", "adios"]);
+
+  const [newItem, setNewItem] = useState("")
+
+  useEffect(()=>{
+    const data = localStorage.getItem("name")
+    setList(JSON.parse(data))
+  },[])
+
+  useEffect(()=>{
+      localStorage.setItem("name",JSON.stringify(list))
+  },[list])
+
+
+const handleChange = (e)=>{
+  setNewItem(e.target.value)
+}
+
+  const createNewItem = ()=>{
+    setList(()=>[...list, newItem])
+   setNewItem('')
+  }  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+          <p>Prueba</p>
+        <ul>
+          {list.map((dato)=>(
+            <li key={dato}>{dato}</li>
+          ))}
+        </ul>
+        <input 
+          type="text" 
+          onChange={handleChange}
+          value={newItem}
+          placeholder="introduce"/>
+        <br/>
+        <button   onClick={createNewItem} >Add</button>
+       
     </div>
   );
 }
