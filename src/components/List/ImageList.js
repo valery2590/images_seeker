@@ -39,9 +39,10 @@ const consultarApi = ()=>{
           <div>
             <a href={user.webformatURL} target="_blank">
             <img src={user.previewURL} alt={user.name} image={user} key={user.previewURL}/>
-            </a>
               <p image={user} key={user.tags}>tags: {user.tags}</p>
               <p image={user} key={user.likes}>Likes {user.likes} </p>
+            </a>
+              
           </div>
         
           )}
