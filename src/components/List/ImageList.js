@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
-import ImageInput from './ImageInput';
-import ImageButton from './ImageButton';
+import ImageInput from '../Input/ImageInput';
+import ImageButton from '../Button/ImageButton';
+import "./ImageList.css"
 
 
 
@@ -10,13 +11,8 @@ const ImageList = (props) => {
 const [image, setImages] = useState([])
 const [termino, setTermino]= useState('')
 
-
-
-
 const url = "https://pixabay.com/api/"
 const API_KEY = '19774551-55ee3622621fff95a0958e798'
-
-
 
 const consultarApi = ()=>{
     axios.get(`${url}?key=${API_KEY}&q=${termino}&image_type=photo&per_page=200`)
@@ -27,12 +23,10 @@ const consultarApi = ()=>{
 }
 
 
-
-   
-
     return (
-      <div> 
+      <div className='imageList_container'> 
         <ImageInput 
+              className="input_container"
               onChange={(e)=>(setTermino(e.target.value))}
               value={termino} />
         <ImageButton onClick={consultarApi} />

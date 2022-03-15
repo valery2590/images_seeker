@@ -1,8 +1,6 @@
 import './App.css';
-import ImageBanner from './components/ImageBanner';
-import ImageButton from './components/ImageButton';
-import ImageInput from './components/ImageInput';
-import ImageList from './components/ImageList';
+import ImageBanner from './components/Banner/ImageBanner';
+import ImageList from './components/List/ImageList';
 
 function App() {
 
