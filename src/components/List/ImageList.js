@@ -25,13 +25,16 @@ const consultarApi = ()=>{
 
     return (
       <div className='imageList_container'> 
-        <ImageInput 
-              className="input_container"
+
+      <div className='first_section_imageList'>
+      <ImageInput 
               onChange={(e)=>(setTermino(e.target.value))}
               value={termino} />
-        <ImageButton onClick={consultarApi} />
+        <ImageButton onClick={consultarApi} />  
+      </div>
+        
 
-        <div>
+        <div className='second_section_imageList'>
           {image.map ((user, idx)=>
           <div>
             <a href={user.webformatURL} target="_blank">

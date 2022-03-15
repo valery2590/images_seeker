@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
+import "./ImageInput.css"
 
 const ImageInput = ({onChange, value, className}) => {
 
 
 
     return (
-        <div className={className}>
+        <div className='input_container'>
             <input 
             type="text"
             onChange={onChange}
-            placeholder='Introduce your search'
+            placeholder='Seek your next favourite image'
             value={value}
+            className="input"
             />
         </div>
     );

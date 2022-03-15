@@ -1,9 +1,10 @@
 import React from 'react';
+import "./ImageBanner.css"
 
 const ImageBanner = () => {
     return (
-        <div>
-            <p>Search for your next favourite image</p>
+        <div className='banner_container'>
+            <p className='banner_title'>Image Seeker</p>
         </div>
     );
 };
