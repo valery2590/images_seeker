@@ -3,7 +3,7 @@ import React from 'react';
 const ImageBanner = () => {
     return (
         <div>
-            <p>Images Seeker</p>
+            <p>Search for your next favourite image</p>
         </div>
     );
 };
