@@ -2,7 +2,7 @@
   "name": "buscador_imagenes",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://valery2590.github.io/imageSeeker",
+  "homepage": "http://valery2590.github.io/image_seeker",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
