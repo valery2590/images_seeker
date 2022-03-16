@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios'
 import ImageInput from '../Input/ImageInput';
 import ImageButton from '../Button/ImageButton';
@@ -36,14 +36,21 @@ const consultarApi = ()=>{
 
         <div className='second_section_imageList'>
           {image.map ((user, idx)=>
-          <div>
-            <a href={user.webformatURL} target="_blank">
-            <img src={user.previewURL} alt={user.name} image={user} key={user.previewURL}/>
-              <p image={user} key={user.tags}>tags: {user.tags}</p>
-              <p image={user} key={user.likes}>Likes {user.likes} </p>
+          <div className='images_search_container'>
+            <a href={user.webformatURL} 
+              target="_blank" rel="noreferrer" 
+              className='images_search_item'>
+
+              <img src={user.previewURL} 
+                  alt={user.name} 
+                  image={user} 
+                  key={user.previewURL} 
+                  className="image_item" 
+                  />
             </a>
-              
+          
           </div>
+          
         
           )}
         </div>

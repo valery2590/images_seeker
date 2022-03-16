@@ -11,7 +11,40 @@
 }
 .second_section_imageList {
   width: 100%;
-  columns: 8 215px;
-  column-gap: 44px;
-  margin: 0 32px;
+  columns: 8 250px;
+  column-gap: 25px;
+}
+.images_search_container{
+  width: 100%;
+}
+.images_search_item{
+  text-decoration: none;
+  color: white;
+}
+
+
+.image_item{
+width: 100%;
+border-radius: 12px;
+}
+.text_image{
+  font-weight: bolder;
+  font-size: 0.7vw;
+  color: black;
+}
+
+@media (max-width: 450px) {
+  .text_image{
+    color: white;
+    position: relative;
+    top: -80px;
+    left: -10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    font-weight: bolder;
+    color: white;
+    font-size:3vw;
+  }
 }
