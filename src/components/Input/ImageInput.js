@@ -1,9 +1,9 @@
 import React from 'react';
 import "./ImageInput.css"
 
-const ImageInput = ({onChange, value, className}) => {
+const ImageInput = ({onChange, value, onKeyPress}) => {
 
-
+   
 
     return (
         <div className='input_container'>
@@ -13,6 +13,7 @@ const ImageInput = ({onChange, value, className}) => {
             placeholder='Seek your next favourite image'
             value={value}
             className="input"
+           onKeyPress={onKeyPress}
             />
         </div>
     );

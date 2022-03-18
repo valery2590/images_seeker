@@ -1,12 +1,21 @@
+import { keyboard } from '@testing-library/user-event/dist/keyboard';
 import React from 'react';
 import "./ImageButton.css"
 
-const ImageButton = ({onClick}) => {
+const ImageButton = ({onClick, ref , onSubmit}) => {
+
+ 
     return (
         <div className='button_container'>
+          
             <button 
                 className='button'
-                onClick={onClick}>Search!</button>
+                onClick={onClick}
+                ref={ref}
+                type="submit"
+                >Search!</button>
+          
+          
         </div>
     );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import ImageInput from '../Input/ImageInput';
 import ImageButton from '../Button/ImageButton';
@@ -6,22 +6,34 @@ import "./ImageList.css"
 
 
 
-const ImageList = ({onClick}) => {
+const ImageList = () => {
 
 const [image, setImages] = useState([])
 const [termino, setTermino]= useState('')
 
+
 const url = "https://pixabay.com/api/"
 const API_KEY = '19774551-55ee3622621fff95a0958e798'
 
-const consultarApi = ()=>{
-    axios.get(`${url}?key=${API_KEY}&q=${termino}&image_type=photo&per_page=200`)
-      .then(response=>{
-          setImages(response.data.hits)
-      })
-  setTermino('')
-}
+useEffect(async ()=>{
+  const search = await  axios.get(`${url}?key=${API_KEY}&image_type=photo&type=photo&per_page=200`)
+  setImages(search.data.hits)
+},[])
 
+
+const consultarApi = ()=>{
+  axios.get(`${url}?key=${API_KEY}&q=${termino}&image_type=photo&per_page=200`)
+    .then(response=>{
+      setImages(response.data.hits)
+    })
+    setTermino('')
+}
+  
+const handleKeypress = e => {
+  if (e.keyCode === 13) {
+    this.btn.click();
+  }
+};
 
     return (
       <div className='imageList_container'> 
@@ -29,31 +41,40 @@ const consultarApi = ()=>{
       <div className='first_section_imageList'>
       <ImageInput 
               onChange={(e)=>(setTermino(e.target.value))}
-              value={termino} />
-        <ImageButton onClick={consultarApi} />  
+              value={termino}
+              onKeyPress={handleKeypress}
+               />
+        <ImageButton onClick={consultarApi} 
+        ref={node => (this.btn = node)}
+       />  
       </div>
         
 
         <div className='second_section_imageList'>
-          {image.map ((user, idx)=>
-          <div className='images_search_container'>
-            <a href={user.webformatURL} 
-              target="_blank" rel="noreferrer" 
-              className='images_search_item'>
-
+          {image.length >= 1 &&
+          image.map ((user, idx)=>
+          <div className='images_search_container'
+            image={user} 
+            key={user.previewURL} >
+              <a href={user.webformatURL} 
+                target="_blank" rel="noreferrer" 
+                className='images_search_item'
+                >
               <img src={user.previewURL} 
                   alt={user.name} 
                   image={user} 
                   key={user.previewURL} 
                   className="image_item" 
                   />
-            </a>
-          
-          </div>
-          
-        
-          )}
+              </a>
+            </div>
+            )}
         </div>
+        {image.length === 0 &&
+              <div className='noResult_section_container'>
+                <p className='noResult_text'>No hay ps pendejo!</p>
+              </div>
+           }
         
       </div>
     )}
