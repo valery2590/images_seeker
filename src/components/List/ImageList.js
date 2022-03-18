@@ -6,7 +6,7 @@ import "./ImageList.css"
 
 
 
-const ImageList = (props) => {
+const ImageList = ({onClick}) => {
 
 const [image, setImages] = useState([])
 const [termino, setTermino]= useState('')

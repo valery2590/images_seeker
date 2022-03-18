@@ -5,12 +5,13 @@ import ImageList from './components/List/ImageList';
 function App() {
 
 
-
   return (
-    <div>
-     <ImageBanner/>
-     <ImageList />
-    </div>
+      <div>
+        <ImageBanner />
+        <ImageList />
+      </div>
+
+    
   );
 }
 

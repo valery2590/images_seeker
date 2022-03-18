@@ -12,9 +12,12 @@
         height: 40px;
         border-radius: 10px;
         border: 2px solid #1C0C5B;
-        background-color: white;
-        cursor: pointer;
         margin-left: 10px;
+        background-color: #C996CC;
+        cursor: pointer;
+        border: none;
+        font-size: 3.5vh;
+
     }
     
 }
