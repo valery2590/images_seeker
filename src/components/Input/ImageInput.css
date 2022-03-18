@@ -1,18 +1,30 @@
-.input_container{
-    width: 75%;
-    height: 100px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital@1&display=swap');
+
+@media (min-width:421px){
+    .input_container{
+        width: 75%;
+        height: 100px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .input{
+        width: 100%;
+        height: 40px;
+        border-radius: 10px;
+        border: 2px solid #1C0C5B;
+    }
+    ::-webkit-input-placeholder {
+        text-align: center;
+        font-size: 1vw;
+        align-items: center;
+        font-family: 'Prompt', sans-serif;    
+     }
 }
 
-.input{
-    width: 100%;
-    height: 40px;
-    border-radius: 10px;
-    border: 2px solid #1C0C5B;
-}
+
 @media (
     max-width:420px
 ){
@@ -33,4 +45,11 @@
         margin: 5px;
         font-size: 4.5vw;
         }
+
+        ::-webkit-input-placeholder {
+            text-align: center;
+            font-size: 3.5vw;
+            align-items: center;
+            font-family: 'Prompt', sans-serif;    
+         }
 }
