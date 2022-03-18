@@ -43,11 +43,8 @@ const listener = event => {
       <ImageInput 
               onChange={(e)=>(setTermino(e.target.value))}
               value={termino}
-onKeyPress={listener}
-               />
-        <ImageButton onClick={consultarApi} 
-       
-       />  
+              onKeyPress={listener}/>
+        <ImageButton onClick={consultarApi}/>  
       </div>
         
 
@@ -56,15 +53,15 @@ onKeyPress={listener}
           image.map ((user, idx)=>
           <div className='images_search_container'
             image={user} 
-            key={user.previewURL} >
-              <a href={user.webformatURL} 
+            key={user.largeImageURL} >
+              <a href={user.largeImageURL} 
                 target="_blank" rel="noreferrer" 
                 className='images_search_item'
                 >
-              <img src={user.previewURL} 
+              <img src={user.largeImageURL} 
                   alt={user.name} 
                   image={user} 
-                  key={user.previewURL} 
+                  key={user.largeImageURL} 
                   className="image_item" 
                   />
               </a>
