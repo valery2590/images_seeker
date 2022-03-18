@@ -21,7 +21,7 @@ useEffect(async ()=>{
 
 
 const consultarApi = ()=>{
-  axios.get(`${url}?key=${API_KEY}&q=${termino}&image_type=photo&per_page=200`)
+  axios.get(`${url}?key=${API_KEY}&q=${termino}&image_type=photo&per_page=21`)
     .then(response=>{
       setImages(response.data.hits)
     })

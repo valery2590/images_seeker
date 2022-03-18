@@ -10,7 +10,7 @@ const ImageInput = ({onChange, value, onKeyPress}) => {
             <input 
             type="text"
             onChange={onChange}
-            placeholder='Seek your next favourite image'
+            placeholder='Seek your next image'
             value={value}
             className="input"
            onKeyPress={onKeyPress}
