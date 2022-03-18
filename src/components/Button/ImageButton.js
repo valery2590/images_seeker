@@ -2,7 +2,7 @@ import { keyboard } from '@testing-library/user-event/dist/keyboard';
 import React from 'react';
 import "./ImageButton.css"
 
-const ImageButton = ({onClick, ref , onSubmit}) => {
+const ImageButton = ({onClick}) => {
 
  
     return (
@@ -11,7 +11,6 @@ const ImageButton = ({onClick, ref , onSubmit}) => {
             <button 
                 className='button'
                 onClick={onClick}
-                ref={ref}
                 type="submit"
                 >Search!</button>
           

@@ -11,7 +11,6 @@ const ImageList = () => {
 const [image, setImages] = useState([])
 const [termino, setTermino]= useState('')
 
-
 const url = "https://pixabay.com/api/"
 const API_KEY = '19774551-55ee3622621fff95a0958e798'
 
@@ -29,11 +28,13 @@ const consultarApi = ()=>{
     setTermino('')
 }
   
-const handleKeypress = e => {
-  if (e.keyCode === 13) {
-    this.btn.click();
+const listener = event => {
+  if (event.code === "Enter" || event.code === "NumpadEnter") {
+    event.preventDefault();
+    consultarApi();
   }
 };
+
 
     return (
       <div className='imageList_container'> 
@@ -42,10 +43,10 @@ const handleKeypress = e => {
       <ImageInput 
               onChange={(e)=>(setTermino(e.target.value))}
               value={termino}
-              onKeyPress={handleKeypress}
+onKeyPress={listener}
                />
         <ImageButton onClick={consultarApi} 
-        ref={node => (this.btn = node)}
+       
        />  
       </div>
         
@@ -70,7 +71,7 @@ const handleKeypress = e => {
             </div>
             )}
         </div>
-        {image.length === 0 &&
+        {image.length === 0 &&  
               <div className='noResult_section_container'>
                 <p className='noResult_text'>No hay ps pendejo!</p>
               </div>
