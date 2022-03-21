@@ -11,27 +11,12 @@
 }
 .second_section_imageList {
   width: 100%;
-  columns: 8 250px;
-  column-gap: 25px;
-}
-.images_search_container{
-  width: 100%;
-}
-.images_search_item{
-  text-decoration: none;
-  color: white;
+  columns: 8 312px;
+  column-gap: 0.5em;
 }
 
 
-.image_item{
-width: 100%;
-border-radius: 12px;
-}
-.text_image{
-  font-weight: bolder;
-  font-size: 0.7vw;
-  color: black;
-}
+
 
 .noResult_section_container{
   width: 100%;

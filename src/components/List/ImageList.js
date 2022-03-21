@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import ImageInput from '../Input/ImageInput';
 import ImageButton from '../Button/ImageButton';
+import Image from '../Image/Image'
 import "./ImageList.css"
 
 
@@ -21,7 +22,7 @@ useEffect(async ()=>{
 
 
 const consultarApi = ()=>{
-  axios.get(`${url}?key=${API_KEY}&q=${termino}&image_type=photo&per_page=21`)
+  axios.get(`${url}?key=${API_KEY}&q=${termino}&image_type=photo&per_page=200`)
     .then(response=>{
       setImages(response.data.hits)
     })
@@ -47,26 +48,19 @@ const listener = event => {
         <ImageButton onClick={consultarApi}/>  
       </div>
         
-
         <div className='second_section_imageList'>
           {image.length >= 1 &&
           image.map ((user, idx)=>
-          <div className='images_search_container'
-            image={user} 
-            key={user.largeImageURL} >
-              <a href={user.largeImageURL} 
-                target="_blank" rel="noreferrer" 
-                className='images_search_item'
-                >
-              <img src={user.largeImageURL} 
+          <Image 
+            key={user.largeImageURL}
+            href={user.largeImageURL} 
+            src={user.largeImageURL} 
                   alt={user.name} 
-                  image={user} 
-                  key={user.largeImageURL} 
-                  className="image_item" 
-                  />
-              </a>
-            </div>
+                  tags={user.tags}
+                  likes={user.likes}
+          />
             )}
+
         </div>
         {image.length === 0 &&  
               <div className='noResult_section_container'>
