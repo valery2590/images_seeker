@@ -5,6 +5,7 @@ const ImageBanner = () => {
 
     const refreshPage = ()=>{
         window.location.reload();
+       window.localStorage.removeItem("local");
      }
 
     return (

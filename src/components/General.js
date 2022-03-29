@@ -8,14 +8,14 @@ function App() {
 
   const [newItem, setNewItem] = useState("")
 
-  useEffect(()=>{
-    const data = localStorage.getItem("name")
-    setList(JSON.parse(data))
-  },[])
+  // useEffect(()=>{
+  //   const data = localStorage.getItem("name")
+  //   setList(JSON.parse(data))
+  // },[])
 
-  useEffect(()=>{
-      localStorage.setItem("name",JSON.stringify(list))
-  },[list])
+  // useEffect(()=>{
+  //     localStorage.setItem("name",JSON.stringify(list))
+  // },[list])
 
 
 const handleChange = (e)=>{

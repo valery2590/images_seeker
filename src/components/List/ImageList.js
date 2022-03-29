@@ -10,25 +10,51 @@ import "./ImageList.css"
 const ImageList = () => {
 
 const [image, setImages] = useState([])
-const [termino, setTermino]= useState('')
+const [termino, setTermino]= useState( 
+  ()=>{
+    const saved = localStorage.getItem("local");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  }
+)
 
 const url = "https://pixabay.com/api/"
 const API_KEY = '19774551-55ee3622621fff95a0958e798'
 
-useEffect(async ()=>{
-  const search = await  axios.get(`${url}?key=${API_KEY}&image_type=photo&type=photo&per_page=200`)
-  setImages(search.data.hits)
-},[])
+// API 
+const getData = async ()=>{
+  const res = await axios.get(`${url}?key=${API_KEY}&q=${termino}&image_type=photo&type=photo&per_page=100`)
+  setImages(res.data.hits)
+}
 
+useEffect(()=>{ 
+    getData()
+},[])// eslint-disable-line react-hooks/exhaustive-deps
 
 const consultarApi = ()=>{
-  axios.get(`${url}?key=${API_KEY}&q=${termino}&image_type=photo&per_page=200`)
+  axios.get(`${url}?key=${API_KEY}&q=${termino}&image_type=photo&per_page=100`)
     .then(response=>{
       setImages(response.data.hits)
     })
-    setTermino('')
+    // setTermino('')
 }
-  
+//LOCAL STORAGE
+
+useEffect(()=>{
+  const data =   localStorage.getItem("local")
+  setTermino(JSON.parse(data))
+  },[])
+
+
+useEffect(()=>{
+    localStorage.setItem("local",JSON.stringify(termino))
+},[termino])
+
+
+
+
+
+// KEY ENTER EVENT  
 const listener = event => {
   if (event.code === "Enter" || event.code === "NumpadEnter") {
     event.preventDefault();
