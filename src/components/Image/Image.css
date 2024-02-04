@@ -5,12 +5,12 @@
         width:100%;
         height: 100%;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
-        align-items: flex-start; 
+        align-items: center; 
         margin-bottom:10px;
-        
         border-radius: 10%;
+        position: relative;
     }
     
     .image__component{
@@ -29,18 +29,16 @@
     }
     
     .text_image_component{
-        width: 100%; 
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
         position: absolute;
-        top: 90%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        position: absolute;
+        bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 100%;
     }
     .tag_text, .like_text{
-        font-size:1vw;
+        font-size:15px;
         color: white;
     }
     .emoji{
