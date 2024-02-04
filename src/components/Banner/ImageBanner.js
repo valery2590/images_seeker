@@ -10,7 +10,7 @@ const ImageBanner = () => {
 
     return (
         <div className='banner_container'>
-            <p className='banner_title' onClick={refreshPage}>Image Seeker</p>
+            <p className='banner_title' onClick={refreshPage}>Image seeker</p>
         </div>
     );
 };
