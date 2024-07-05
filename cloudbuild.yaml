@@ -1,0 +1,35 @@
+steps:
+# Install dependencies
+- name: 'node:14'  # or whichever version of Node.js you are using
+  entrypoint: 'npm'
+  args: ['install']
+
+# Run tests
+- name: 'node:14'
+  entrypoint: 'npm'
+  args: ['test']
+
+# Build the project (if applicable)
+- name: 'node:14'
+  entrypoint: 'npm'
+  args: ['run', 'build']
+
+# Deploy the application to Cloud Run
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['run', 'deploy', 'YOUR_SERVICE_NAME', '--image', 'gcr.io/YOUR_PROJECT_ID/YOUR_IMAGE', '--region', 'europe-north1']
+
+# Specify any artifacts you want to save (optional)
+artifacts:
+  objects:
+    location: 'gs://my-artifacts-bucket/builds/'
+    paths: ['build/**']
+
+# Example of specifying environment variables (optional)
+options:
+  env:
+    - 'NODE_ENV=production'
+
+# Substitutions (optional)
+substitutions:
+  _REGION: 'europe-north1'
+  _SERVICE_NAME: "google-test-ricardo"
