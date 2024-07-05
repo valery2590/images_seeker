@@ -1,35 +1,53 @@
 steps:
-# Install dependencies
-- name: 'node:14'  # or whichever version of Node.js you are using
-  entrypoint: 'npm'
-  args: ['install']
+  - name: gcr.io/k8s-skaffold/pack
+    args:
+      - build
+      - >-
+        $_AR_HOSTNAME/$PROJECT_ID/cloud-run-source-deploy/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+      - '--builder=gcr.io/buildpacks/builder:v1'
+      - '--network=cloudbuild'
+      - '--path=.'
+    id: Buildpack
+    entrypoint: pack
 
-# Run tests
-- name: 'node:14'
-  entrypoint: 'npm'
-  args: ['test']
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - >-
+        $_AR_HOSTNAME/$PROJECT_ID/cloud-run-source-deploy/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+    id: Push
 
-# Build the project (if applicable)
-- name: 'node:14'
-  entrypoint: 'npm'
-  args: ['run', 'build']
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    args:
+      - run
+      - services
+      - update
+      - $_SERVICE_NAME
+      - '--platform=managed'
+      - >-
+        --image=$_AR_HOSTNAME/$PROJECT_ID/cloud-run-source-deploy/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
+      - >-
+        --labels=managed-by=gcp-cloud-build-deploy-cloud-run,commit-sha=$COMMIT_SHA,gcb-build-id=$BUILD_ID,gcb-trigger-id=$_TRIGGER_ID
+      - '--region=$_DEPLOY_REGION'
+      - '--quiet'
+    id: Deploy
+    entrypoint: gcloud
 
-# Deploy the application to Cloud Run
-- name: 'gcr.io/cloud-builders/gcloud'
-  args: ['run', 'deploy', 'YOUR_SERVICE_NAME', '--image', 'gcr.io/YOUR_PROJECT_ID/YOUR_IMAGE', '--region', 'europe-north1']
-
-# Specify any artifacts you want to save (optional)
-artifacts:
-  objects:
-    location: 'gs://my-artifacts-bucket/builds/'
-    paths: ['build/**']
-
-# Example of specifying environment variables (optional)
+images:
+  - >-
+    $_AR_HOSTNAME/$PROJECT_ID/cloud-run-source-deploy/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
 options:
-  env:
-    - 'NODE_ENV=production'
+  substitutionOption: ALLOW_LOOSE
+  logging: CLOUD_LOGGING_ONLY
 
-# Substitutions (optional)
 substitutions:
-  _REGION: 'europe-north1'
-  _SERVICE_NAME: "google-test-ricardo"
+  _AR_HOSTNAME: europe-north1-docker.pkg.dev
+  _PLATFORM: managed
+  _SERVICE_NAME: google-test-ricardo
+  _DEPLOY_REGION: europe-north1
+  _TRIGGER_ID: eee642bd-4f58-4c6d-a2d8-9ce0a2895817
+
+tags:
+  - gcp-cloud-build-deploy-cloud-run
+  - gcp-cloud-build-deploy-cloud-run-managed
+  - dev
